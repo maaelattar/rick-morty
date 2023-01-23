@@ -2,11 +2,13 @@ import { Typography } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid";
 import { Container } from "@mui/system";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useQuery } from "urql";
 import { GetCharacters } from "../../../lib/queries";
 import CharacterCard from "../../components/CharacterCard";
 import CustomPagination from "../../components/CustomPagination";
+import SearchForm from "../../components/SearchForm";
 import { Character } from "../../gql/graphql";
 
 const styles = () => ({
@@ -30,15 +32,17 @@ const styles = () => ({
 });
 
 function HomePage() {
-  let [searchParams] = useSearchParams();
+  let [searchParams, setSearchParams] = useSearchParams();
 
   const sx = styles();
+
+  const [filter, setFilter] = useState({});
 
   const page = Number(searchParams.get("page")) || 1;
 
   const [result] = useQuery({
     query: GetCharacters,
-    variables: { page },
+    variables: { page, filter },
   });
 
   const { fetching, data } = result;
@@ -50,11 +54,16 @@ function HomePage() {
       </Grid>
     ));
 
+  const onSearchFormSubmit = (values: Record<string, any>) => {
+    setSearchParams({ page: "1" });
+    setFilter(values);
+  };
   return (
     <Container fixed sx={sx.rootContainer}>
       <Typography variant="h1" sx={sx.title}>
         Rick and Morty Characters
       </Typography>
+      <SearchForm onSubmit={onSearchFormSubmit} />
 
       {fetching && <CircularProgress sx={sx.circularProgress} />}
 
