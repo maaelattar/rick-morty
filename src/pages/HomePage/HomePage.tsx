@@ -21,6 +21,7 @@ const styles = (theme: Theme) => ({
     gap: 4,
     paddingTop: 3,
     paddingBottom: 3,
+    position: "relative",
   },
   title: {
     color: theme.palette.primary.light,
