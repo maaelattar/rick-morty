@@ -9,6 +9,7 @@ import { Character } from "../../gql/graphql";
 
 const styles = () => ({
   cardRoot: { backgroundColor: "lavender" },
+  cardMedia: { minHeight: "270px" },
 });
 
 type Props = { character: Character };
@@ -32,6 +33,7 @@ const CharacterCard = (props: Props) => {
           component="img"
           image={character.image!}
           alt={character.name!}
+          sx={sx.cardMedia}
         />
         <CardContent>
           <Typography gutterBottom variant="overline" component="p">
