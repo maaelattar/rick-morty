@@ -25,6 +25,7 @@ const CustomPagination = (props: Props) => {
       showLastButton
       onChange={(_e, page) => {
         setSearchParams({ page: `${page}` });
+        window.scrollTo(0, 0);
       }}
     />
   );
