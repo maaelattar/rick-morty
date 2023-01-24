@@ -8,7 +8,7 @@ import useCharacterDrawerFacade from "../../facades/useCharacterDrawerFacade";
 import { Character } from "../../gql/graphql";
 
 const styles = () => ({
-  autoCompleteRoot: { backgroundColor: "lavender" },
+  cardRoot: { backgroundColor: "lavender" },
 });
 
 type Props = { character: Character };
@@ -21,7 +21,7 @@ const CharacterCard = (props: Props) => {
   const sx = styles();
 
   return (
-    <Card sx={sx.autoCompleteRoot}>
+    <Card sx={sx.cardRoot}>
       <CardActionArea
         role="characterAction"
         onClick={() => {

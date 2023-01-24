@@ -1,6 +1,6 @@
 import CloseIcon from "@mui/icons-material/Close";
-import { CircularProgress } from "@mui/material";
 import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 import Container from "@mui/material/Container";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
@@ -18,15 +18,19 @@ const styles = () => ({
     right: "1%",
     borderRadius: "3%",
     height: "94%",
-    width: "700px",
     backgroundColor: "snow",
+    maxWidth: "650px",
     "& img.characterImage": {
       width: "100%",
-      height: "400px",
-      objectFit: "cover",
+      maxHeight: "500px",
     },
   },
-  closeButton: { position: "absolute", top: "1%", left: "1%" },
+  closeButton: {
+    color: "cornsilk",
+    position: "absolute",
+    top: "1%",
+    left: "1%",
+  },
   circularProgress: { position: "absolute", top: "50%", left: "50%" },
   infoBox: {
     padding: "16px 32px",

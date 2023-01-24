@@ -1,4 +1,4 @@
-import { Pagination } from "@mui/material";
+import Pagination from "@mui/material/Pagination";
 import { useSearchParams } from "react-router-dom";
 
 const styles = () => ({

@@ -1,13 +1,20 @@
 import SearchIcon from "@mui/icons-material/Search";
-import { Box, Grid, IconButton, Paper, TextField } from "@mui/material";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton";
+import Paper from "@mui/material/Paper";
+import { Theme } from "@mui/material/styles";
+import TextField from "@mui/material/TextField";
+import useTheme from "@mui/styles/useTheme";
+
 import { useForm } from "react-hook-form";
 import CustomAutoComplete from "../CustomAutoComplete";
 import { autoCompleteOptions } from "./staticAutoCompleteOptions";
 
-const styles = () => ({
+const styles = (theme: Theme) => ({
   form: {
     padding: "8px 16px",
-    backgroundColor: "mintcream",
+    backgroundColor: "ghostwhite",
   },
   gridContainer: {
     justifyContent: "space-between",
@@ -21,7 +28,10 @@ const styles = () => ({
     alignItems: "flex-end",
   },
   searchIconButton: {
-    width: "100%",
+    [theme.breakpoints.down("xl")]: {
+      width: "100%",
+      borderRadius: 0,
+    },
   },
 });
 
@@ -38,7 +48,7 @@ type Props = {
 const SearchForm = (props: Props) => {
   const { onSubmit } = props;
 
-  const sx = styles();
+  const sx = styles(useTheme());
 
   const { register, handleSubmit } = useForm({
     defaultValues: {
@@ -68,7 +78,7 @@ const SearchForm = (props: Props) => {
           <Grid item xs={12} xl={3}>
             <TextField
               {...register("name")}
-              color="secondary"
+              color="primary"
               label="Name"
               variant="standard"
               sx={sx.textFiled}

@@ -1,7 +1,10 @@
-import { Typography } from "@mui/material";
+import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
+import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import { Container } from "@mui/system";
+import { Theme } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
+import useTheme from "@mui/styles/useTheme";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useQuery } from "urql";
@@ -11,7 +14,7 @@ import CustomPagination from "../../components/CustomPagination";
 import SearchForm from "../../components/SearchForm";
 import { Character } from "../../gql/graphql";
 
-const styles = () => ({
+const styles = (theme: Theme) => ({
   rootContainer: {
     display: "flex",
     flexDirection: "column",
@@ -20,9 +23,12 @@ const styles = () => ({
     paddingBottom: 3,
   },
   title: {
-    color: "#9393c6",
+    color: theme.palette.primary.light,
     fontSize: "4rem",
     textAlign: "center",
+  },
+  charactersContainer: {
+    minHeight: "650px",
   },
   circularProgress: {
     position: "absolute",
@@ -34,7 +40,7 @@ const styles = () => ({
 function HomePage() {
   let [searchParams, setSearchParams] = useSearchParams();
 
-  const sx = styles();
+  const sx = styles(useTheme());
 
   const [filter, setFilter] = useState({});
 
@@ -67,13 +73,13 @@ function HomePage() {
 
       {fetching && <CircularProgress sx={sx.circularProgress} />}
 
-      {data?.characters && !fetching && (
-        <>
+      <Box sx={sx.charactersContainer}>
+        {data?.characters && !fetching && (
           <Grid container spacing={2}>
             {renderCharacters()}
           </Grid>
-        </>
-      )}
+        )}
+      </Box>
       {data?.characters?.info?.count && (
         <CustomPagination pagesCount={data.characters.info?.pages!} />
       )}
