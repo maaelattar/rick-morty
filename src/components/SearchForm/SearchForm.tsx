@@ -21,6 +21,7 @@ const styles = (theme: Theme) => ({
   },
   textFiled: {
     justifyContent: "space-between",
+    width: "100%",
   },
   searchIconGridItem: {
     display: "flex",
