@@ -1,7 +1,14 @@
+import ThemeProvider from "@mui/styles/ThemeProvider";
+import theme from "../../theme";
 import { render, screen, within } from "../../utils/test-utils";
 import SearchForm from "./SearchForm";
 
-const setup = () => render(<SearchForm onSubmit={vi.fn()} />);
+const setup = () =>
+  render(
+    <ThemeProvider theme={theme}>
+      <SearchForm onSubmit={vi.fn()} />
+    </ThemeProvider>
+  );
 
 beforeEach(() => {
   setup();

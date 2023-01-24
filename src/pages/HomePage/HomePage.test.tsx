@@ -6,16 +6,20 @@ import {
 } from "../../utils/test-utils";
 import HomePage from "./HomePage";
 
+import ThemeProvider from "@mui/styles/ThemeProvider";
 import { MemoryRouter } from "react-router-dom";
 import { Provider as UrGraphQlProvider } from "urql";
+import theme from "../../theme";
 import urqlClient from "../../UrqlClient";
 
 const setup = () => {
   render(
     <MemoryRouter>
-      <UrGraphQlProvider value={urqlClient}>
-        <HomePage />
-      </UrGraphQlProvider>
+      <ThemeProvider theme={theme}>
+        <UrGraphQlProvider value={urqlClient}>
+          <HomePage />
+        </UrGraphQlProvider>
+      </ThemeProvider>
     </MemoryRouter>
   );
 };
