@@ -36,6 +36,9 @@ const styles = (theme: Theme) => ({
     top: "50%",
     left: "50%",
   },
+  noResults: {
+    textAlign: "center",
+  },
 });
 
 function HomePage() {
@@ -52,7 +55,7 @@ function HomePage() {
     variables: { page, filter },
   });
 
-  const { fetching, data } = result;
+  const { fetching, data, error } = result;
 
   const renderCharacters = () =>
     data?.characters?.results?.map((character) => (
@@ -73,6 +76,17 @@ function HomePage() {
       <SearchForm onSubmit={onSearchFormSubmit} />
 
       {fetching && <CircularProgress sx={sx.circularProgress} />}
+      {!fetching && !error && !data?.characters?.info?.count && (
+        <Typography variant="body1" sx={sx.noResults}>
+          Oops no results found may be you should try another name, status,
+          species or gender
+        </Typography>
+      )}
+      {!fetching && error && (
+        <Typography variant="body1" sx={sx.noResults}>
+          Oops unexpected error happened
+        </Typography>
+      )}
 
       <Box sx={sx.charactersContainer}>
         {data?.characters && !fetching && (
