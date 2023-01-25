@@ -6,7 +6,12 @@ import { useState } from "react";
 import { UseFormRegister } from "react-hook-form";
 
 const styles = () => ({
-  autoCompleteRoot: { width: "100%" },
+  autoCompleteRoot: {
+    width: "100%",
+    "& div.MuiAutocomplete-inputRoot.MuiInputBase-adornedEnd": {
+      paddingRight: 0,
+    },
+  },
 });
 
 const filter = createFilterOptions<any>();
